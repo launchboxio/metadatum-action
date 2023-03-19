@@ -31,5 +31,5 @@ outputs:
     description: 'Data received from Metadatum'
 runs:
   using: 'node16'
-  main: 'dist/index.js'
-  post: 'dist/cleanup/index.js'
+  main: 'index.js'
+#  post: 'dist/cleanup/index.js'
