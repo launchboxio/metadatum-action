@@ -1,0 +1,35 @@
+name: 'Manage data stored with Metadatum'
+description: 'Manage data stored with Metadatum'
+inputs:
+  audience:
+    default: 'metadatum.dev'
+    description: 'The audience to use for the OIDC provider'
+    required: false
+  endpoint:
+    default: 'https://metadatum.dev'
+    description: 'The Base URL for Metadatum service'
+    required: false
+  action:
+    default: 'get'
+    description: 'Fetch data stored in Metadatum'
+    required: false
+  query:
+    default: ''
+    description: "Query parameters to send with fetch request"
+    required: false
+  data:
+    default: ''
+    description: "Data to store in Metadatum"
+    required: false
+  metadata_id:
+    default: ''
+    description: "The ID of the metadata record to delete"
+    required: false
+
+outputs:
+  data:
+    description: 'Data received from Metadatum'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+  post: 'dist/cleanup/index.js'
