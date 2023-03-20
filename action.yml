@@ -6,7 +6,7 @@ inputs:
     description: 'The audience to use for the OIDC provider'
     required: false
   endpoint:
-    default: 'https://metadatum.dev'
+    default: 'https://www.metadatum.dev'
     description: 'The Base URL for Metadatum service'
     required: false
   action:
@@ -31,5 +31,5 @@ outputs:
     description: 'Data received from Metadatum'
 runs:
   using: 'node16'
-  main: 'index.js'
+  main: 'dist/index.js'
 #  post: 'dist/cleanup/index.js'

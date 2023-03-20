@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
+    "build": "ncc build index.js",
     "lint": "eslint"
   },
   "repository": {
