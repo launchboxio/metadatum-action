@@ -10534,16 +10534,24 @@ async function run() {
       baseURL: core.getInput('endpoint')
     })
 
-    let data
+    let res, data, raw
     // Based on requested action, build a request
     switch (core.getInput('action')) {
       case 'set':
-        let res = await instance.post("/api/v1/metadata", core.getInput('data'))
+        res = await instance.post("/api/v1/metadata", core.getInput('data'))
         data = res.data
         break
       case 'get':
-        data = await instance.get("/api/v1/metadata", {
+        res = await instance.get("/api/v1/metadata", {
           params: generateParameters(core.getInput('query'))
+        })
+        core.setOutput('raw', res.data)
+        data = res.data.map(m => {
+          try {
+            return JSON.parse(m.data)
+          } catch (error) {
+            return m.data
+          }
         })
         break
       case 'delete':
