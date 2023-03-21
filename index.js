@@ -5,7 +5,7 @@ async function run() {
   try {
     // Fetch an OIDC token for authenticating to Metadatum
     const audience = core.getInput('audience', {required: false});
-    const token = core.getIDToken(audience)
+    const token = await core.getIDToken(audience)
 
     const instance = axios.create({
       headers: {
