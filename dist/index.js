@@ -10534,15 +10534,17 @@ async function run() {
       baseURL: core.getInput('endpoint')
     })
 
+    let data
     // Based on requested action, build a request
     switch (core.getInput('action')) {
       case 'set':
-        await instance.post("/api/v1/metadata", core.getInput('data'))
+        data = await instance.post("/api/v1/metadata", core.getInput('data'))
         break
       case 'get':
-        await instance.get("/api/v1/metadata", {
+        data = await instance.get("/api/v1/metadata", {
           params: generateParameters(core.getInput('query'))
         })
+
         break
       case 'delete':
         throw new Error("Delete method not currently supported")
@@ -10551,6 +10553,10 @@ async function run() {
       default:
         throw new Error(`Invalid method ${core.getInput('action')} provided`)
     }
+
+    console.log(data)
+    core.setOutput('data', data)
+
   } catch (error) {
     core.setFailed(error.message);
   }
