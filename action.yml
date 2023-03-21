@@ -29,6 +29,8 @@ inputs:
 outputs:
   data:
     description: 'Data received from Metadatum'
+  raw:
+    description: 'Full response body from Metadatum'
 runs:
   using: 'node16'
   main: 'dist/index.js'
