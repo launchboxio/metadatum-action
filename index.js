@@ -43,7 +43,7 @@ async function run() {
     }
 
     console.log(data)
-    core.setOutput('data', data)
+    core.setOutput('data', JSON.stringify(data))
 
   } catch (error) {
     core.setFailed(error.message);
