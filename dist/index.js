@@ -10538,13 +10538,13 @@ async function run() {
     // Based on requested action, build a request
     switch (core.getInput('action')) {
       case 'set':
-        data = await instance.post("/api/v1/metadata", core.getInput('data'))
+        let res = await instance.post("/api/v1/metadata", core.getInput('data'))
+        data = res.data
         break
       case 'get':
         data = await instance.get("/api/v1/metadata", {
           params: generateParameters(core.getInput('query'))
         })
-
         break
       case 'delete':
         throw new Error("Delete method not currently supported")
